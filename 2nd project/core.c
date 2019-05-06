@@ -5,39 +5,39 @@
 #include "main.h"
 #include "product_lib.h"
 
-void init(){ head=NULL; }
+void init() { head = NULL; }
 
-void command_a(){
-	link temp = NULL;
-	unsigned long int key; 
-	int stock;
-	scanf("%lx%d", &key, &stock); 
-	temp=search(head, key);
-	if(temp==NULL)
-		head=insert(head, newProduct(key, stock));
-	else{
-		if (temp->item->stock+stock>0)
-			temp->item->stock+=stock;
-		else temp->item->stock = 0;
-	}
+void command_a() {
+  link temp = NULL;
+  unsigned long int key;
+  int stock;
+  scanf("%lx%d", &key, &stock);
+  temp = search(head, key);
+  if (temp == NULL)
+    head = insert(head, newProduct(key, stock));
+  else {
+    if (temp->item->stock + stock > 0)
+      temp->item->stock += stock;
+    else
+      temp->item->stock = 0;
+  }
 }
 
+void command_l() { traverse(head); }
 
-void command_l(){ traverse(head); }
-
-void command_m(){
-	maxProd = NULL;
-	calc_max(head);
-	if(maxProd!=NULL)	visit(maxProd);
+void command_m() {
+  maxProd = NULL;
+  calc_max(head);
+  if (maxProd != NULL) visit(maxProd);
 }
 
-void command_r(){
-	unsigned long int key;
-	scanf("%lx", &key);
-	head=delete(head, key);
+void command_r() {
+  unsigned long int key;
+  scanf("%lx", &key);
+  head = delete (head, key);
 }
 
-void command_x(){ 
-	printf("%i\n", counter(head)); 
-	clear_node(head);
+void command_x() {
+  printf("%i\n", counter(head));
+  clear_node(head);
 }
